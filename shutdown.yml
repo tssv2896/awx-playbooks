@@ -16,6 +16,8 @@
         state_change_timeout: 200
       register: shutdown_1
       ignore_errors: true
+      become_user: administrator
+      become_method: runas
     - name: poweroff 1
       vmware_guest_powerstate:
         hostname: "{{ vcenter_hostname }}"
@@ -25,6 +27,8 @@
         name: "{{ vm_name_1 }}"
         state: powered-off
       when: shutdown_1.failed
+      become_user: administrator
+      become_method: runas
       
     - name: guest shutdown 2
       vmware_guest_powerstate:
@@ -37,6 +41,8 @@
         state_change_timeout: 200
       register: shutdown_2
       ignore_errors: true
+      become_user: administrator
+      become_method: runas
     - name: poweroff 2
       vmware_guest_powerstate:
         hostname: "{{ vcenter_hostname }}"
@@ -46,6 +52,8 @@
         name: "{{ vm_name_2 }}"
         state: powered-off
       when: shutdown_2.failed
+      become_user: administrator
+      become_method: runas
       
 #   - name: Run an executable and send data to the stdin for the executable
 #     win_command: powershell.exe Stop-Computer -Force
