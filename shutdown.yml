@@ -15,6 +15,16 @@
         state: shutdown-guest
         state_change_timeout: 120
       register: shutdown
+      ignore_errors: true
+    - name: poweroff
+      vmware_guest_powerstate:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: "{{ vcenter_validate_certs }}"
+        name: "{{ vm_name }}"
+        state: powered-off
+      when: shutdown.failed
 #   - name: Run an executable and send data to the stdin for the executable
 #     win_command: powershell.exe Stop-Computer -Force
 #     become_user: administrator
