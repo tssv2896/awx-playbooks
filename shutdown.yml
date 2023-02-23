@@ -11,7 +11,7 @@
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
         validate_certs: "{{ vcenter_validate_certs }}"
-        name: "{{ item  }}"
+        name: "{{ item }}"
         state: shutdown-guest
         state_change_timeout: 200
       register: shutdown
@@ -23,7 +23,7 @@
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
         validate_certs: "{{ vcenter_validate_certs }}"
-        name: "{{ item  }}"
+        name: "{{ item }}"
         state: powered-off
       when: shutdown.failed
       loop: "{{ list_of_vms }}"
