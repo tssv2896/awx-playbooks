@@ -11,7 +11,7 @@
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
         validate_certs: "{{ vcenter_validate_certs }}"
-        name: "{{ item  }}"
+        name: "{{ item }}"
         state: powered-on
         state_change_timeout: 200
-        loop: "{{ list_of_vms }}"
+      loop: "{{ list_of_vms }}"
