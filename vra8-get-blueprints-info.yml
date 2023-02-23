@@ -1,9 +1,10 @@
-- name: [vra8] Get Blueprints Info
+---
+- name: Get Blueprints Info - vra8
   hosts: all
   tasks:
     - name: Run Powershell script
       win_shell: C:\Users\SVCverint\Desktop\VRA-Scripts\getBlueprintsInfo.ps1
       register: execution
-
     - debug:
         var: execution
+
