@@ -17,18 +17,5 @@
       register: shutdown
       loop: "{{ list_of_vms }}"
 
-    - name: poweroff
-      vmware_guest_powerstate:
-        hostname: "{{ vcenter_hostname }}"
-        username: "{{ vcenter_username }}"
-        password: "{{ vcenter_password }}"
-        validate_certs: "{{ vcenter_validate_certs }}"
-        name: "{{ item }}"
-        state: powered-off
-      when: shutdown.failed
-      loop: "{{ list_of_vms }}"
-      
-#   - name: Run an executable and send data to the stdin for the executable
-#     win_command: powershell.exe Stop-Computer -Force
-#     become_user: administrator
-#     become_method: runas
+    - debug:
+        var: shutdown
