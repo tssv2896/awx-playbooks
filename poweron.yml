@@ -5,23 +5,13 @@
   collections:
     - community.vmware
   tasks:
-    - name: Power ON 1
+    - name: Power ON
       vmware_guest_powerstate:
         hostname: "{{ vcenter_hostname }}"
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
         validate_certs: "{{ vcenter_validate_certs }}"
-        name: "{{ vm_name_1 }}"
+        name: "{{ item  }}"
         state: powered-on
         state_change_timeout: 200
-
-    - name: Power ON 2
-      vmware_guest_powerstate:
-        hostname: "{{ vcenter_hostname }}"
-        username: "{{ vcenter_username }}"
-        password: "{{ vcenter_password }}"
-        validate_certs: "{{ vcenter_validate_certs }}"
-        name: "{{ vm_name_2 }}"
-        state: powered-on
-        state_change_timeout: 200
-
+        loop: "{{ list_of_vms }}"
