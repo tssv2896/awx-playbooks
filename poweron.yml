@@ -15,3 +15,6 @@
         state: powered-on
         state_change_timeout: 200
       loop: "{{ list_of_vms }}"
+
+    - debug:
+        var: shutdown
