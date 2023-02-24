@@ -1,9 +1,0 @@
-- name: Get Blueprints List
-  hosts: all
-  tasks:
-    - name: Run Powershell script
-      win_shell: C:\Users\SVCverint\Desktop\VRA-Scripts\bplistupdatedlist.ps1
-      register: execution
-
-    - debug:
-        var: execution
